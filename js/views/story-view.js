@@ -8,7 +8,8 @@ var app = app || {};
     attributes: {'href': '#'},
     events: {
       'dblclick': 'edit',
-      'submit .edit': 'update'
+      'submit .edit': 'update',
+      'click .cancel': 'cancelEdit'
     },
 
     initialize: function () {
@@ -29,6 +30,11 @@ var app = app || {};
       return false;
     },
 
+    cancelEdit: function (e) {
+      this.$el.removeClass('editing');
+      return false;
+    },
+
     update: function () {
       var trimmedTitle = this.$title.val().trim();
       var trimmedDescription = this.$description.val().trim();
@@ -42,7 +48,7 @@ var app = app || {};
         });
       }
 
-      this.$el.removeClass('editing');
+      this.cancelEdit();
     }
   });
 })(jQuery);
