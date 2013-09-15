@@ -2,3 +2,19 @@
     padding-left: 0;
     margin-bottom: 20px;
 }
+
+.container {
+    max-width: 750px;
+}
+
+.edit {
+    display: none;
+}
+
+.editing .edit {
+    display: block;
+}
+
+.editing .view {
+    display: none;
+}
