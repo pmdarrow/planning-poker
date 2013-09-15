@@ -3,7 +3,7 @@ var app = app || {};
 (function () {
   var Stories = Backbone.Collection.extend({
     model: app.Story,
-    localStorage: new Backbone.LocalStorage('planning-poker-backbone'),
+    goInstantKey: '/stories',
 
     revealed: function () {
       return this.filter(function (story) {

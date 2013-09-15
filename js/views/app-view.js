@@ -19,28 +19,11 @@ var app = app || {};
       this.listenTo(app.stories, 'add', this.addOne);
 			this.listenTo(app.stories, 'reset', this.addAll);
 
-      this.initGoInstant();
-
-      app.stories.fetch({reset: true});
-    },
-
-    initGoInstant: function() {
-      this.platform = new goinstant.Platform(this.goInstantUrl);
-      this.platform.connect(_.bind(function(err) {
-        if (err) {
-          console.log("Error connecting to GoInstant:", err);
-          return;
-        }
-        console.log("Connected to GoInstant");
-        this.room = this.platform.room(this.goInstantRoom);
-        this.room.join(function(err, room) {
-          if (err) {
-            console.log('Error joining room:', err);
-            return;
-          }
-          console.log('Joined room:', room);
+      this.goInstant = new app.GoInstantStore(this.goInstantUrl,
+        this.goInstantRoom, function(sync) {
+          Backbone.sync = sync;
+          app.stories.fetch({reset: true});
         });
-      }, this));
     },
 
     // Re-rendering the App just means refreshing the statistics -- the rest
