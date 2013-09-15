@@ -16,7 +16,7 @@ var app = app || {};
       this.$main = this.$('#main');
 
       this.listenTo(app.stories, 'add', this.addOne);
-//			this.listenTo(app.stories, 'reset', this.addAll);
+			this.listenTo(app.stories, 'reset', this.addAll);
 //			this.listenTo(app.stories, 'change:revealed', this.filterOne);
 //			this.listenTo(app.stories, 'filter', this.filterAll);
 //			this.listenTo(app.stories, 'all', this.render);
