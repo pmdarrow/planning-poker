@@ -1,7 +1,6 @@
 var app = app || {};
-var ENTER_KEY = 13;
 
 $(function () {
-	// Kick things off by creating the `App`
+	// Kick things off
 	new app.AppView();
 });

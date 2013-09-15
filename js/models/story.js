@@ -5,14 +5,7 @@ var app = app || {};
     defaults: {
       order: 1,
       title: '',
-      description: '',
-      estimateRevealed: false
-    },
-
-    toggle: function () {
-      this.save({
-        revealed: !this.get('revealed')
-      });
+      description: ''
     }
   });
 })();
