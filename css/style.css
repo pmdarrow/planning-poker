@@ -18,3 +18,11 @@
 .editing .view {
     display: none;
 }
+
+.pencil {
+    display: none;
+}
+
+.list-group-item:hover .pencil {
+    display: block;
+}
