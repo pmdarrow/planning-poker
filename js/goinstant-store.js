@@ -31,39 +31,51 @@ var app = app || {};
   };
 
   _.extend(app.GoInstantStore.prototype, {
-    find: function(model, options) {
-      console.log('find');
+    getKey: function(model) {
+      return this.room.key(model.collection.goInstantKey + '/' + model.id);
     },
 
-    findAll: function(collection, options) {
-      var keyObj = this.room.key(collection.goInstantKey);
-      keyObj.get(function(err, value, context) {
-        debugger;
-      });
-    },
-
-    create: function(model, options) {
-      var keyObj;
-      if (!model.id) {
-        model.id = guid();
-        model.set(model.idAttribute, model.id);
-      }
-      keyObj = this.room.key(model.collection.goInstantKey + '/' + model.id);
-      keyObj.set(JSON.stringify(model), function(err) {
+    setKey: function(model, options) {
+      this.getKey(model).set(JSON.stringify(model), function(err) {
         if (err) {
           return options.error('Error setting GoInstant key: ' + err);
         }
-        console.log('Successfully set key', keyObj);
+        console.log('Successfully set key');
         return options.success(model);
       });
     },
 
+    find: function(model, options) {
+      console.log('find not implemented');
+    },
+
+    findAll: function(collection, options) {
+      var key = this.room.key(collection.goInstantKey);
+      key.get(function(err, value, context) {
+        if (err) {
+          return options.error('Error fetching GoInstantKey: ' + err);
+        }
+        var collection = _.map(value, function(value) {
+          return JSON.parse(value);
+        });
+        return options.success(collection);
+      });
+    },
+
+    create: function(model, options) {
+      if (!model.id) {
+        model.id = guid();
+        model.set(model.idAttribute, model.id);
+      }
+      this.setKey(model, options);
+    },
+
     update: function(model, options) {
-      console.log('find all');
+      this.setKey(model, options);
     },
 
     delete: function(model, options) {
-      console.log('delete');
+      console.log('delete not implemented');
     },
 
     sync: function(method, model, options) {
