@@ -113,8 +113,11 @@ var GoInstantStore = GoInstantStore || {};
 
       switch (method) {
         case "read":
-          model.id != undefined ? this.find(model, options) :
+          if (model.id !== undefined) {
+            this.find(model, options)
+          } else {
             this.findAll(model, options);
+          }
           break;
         case "create":
           this.create(model, options);

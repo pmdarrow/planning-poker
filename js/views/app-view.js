@@ -69,7 +69,7 @@ var app = app || {};
       };
     },
 
-    createOnSubmit: function (e) {
+    createOnSubmit: function () {
       if (this.$title.val() === '') {
         return false;
       }
