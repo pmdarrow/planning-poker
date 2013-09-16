@@ -24,13 +24,13 @@ var app = app || {};
       return this;
     },
 
-    edit: function (e) {
+    edit: function () {
       this.$el.addClass('editing');
       this.$title.focus();
       return false;
     },
 
-    cancelEdit: function (e) {
+    cancelEdit: function () {
       this.$el.removeClass('editing');
       return false;
     },
