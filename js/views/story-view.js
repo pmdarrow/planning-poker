@@ -50,6 +50,7 @@ var app = app || {};
       }
 
       this.cancelEdit();
+      return false;
     },
 
     destroy: function() {
