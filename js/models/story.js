@@ -11,10 +11,6 @@ var app = app || {};
       return this.collection.getKey().key('/' + this.id);
     },
 
-    goInstantUpdate: function () {
-      console.log('goinstant story update');
-    },
-
     serialize: function () {
       return JSON.stringify({
         id: this.id,

@@ -8,8 +8,14 @@ var app = app || {};
       return app.GoInstantStore.room.key('/stories');
     },
 
-    goInstantUpdate: function() {
-      console.log('goinstant stories update');
+    remoteSet: function(value) {
+      console.log('Received a remote set with the value:', value);
+      this.fetch({reset: true});
+    },
+
+    remoteRemove: function() {
+      console.log('Received a remote remove');
+      this.fetch({reset: true});
     },
 
     revealed: function () {

@@ -31,14 +31,26 @@ var GoInstantStore = GoInstantStore || {};
   };
 
   _.extend(GoInstantStore.prototype, {
-    listenForUpdates: function(object, handler) {
+    listenForUpdates: function(collection) {
+      // Listen for sets
       var options = {
         bubble: true,
-        listener: handler
+        listener: _.bind(collection.remoteSet, collection)
       };
-      object.getKey().on('set', options, function(err) {
+      collection.getKey().on('set', options, function(err) {
         if (err) {
-          console.log('There was a problem setting up the listener:', err);
+          console.log('There was a problem setting up the set listener:', err);
+        }
+      });
+
+      // Listen for removes
+      options = {
+        bubble: true,
+        listener: _.bind(collection.remoteRemove, collection)
+      };
+      collection.getKey().on('remove', options, function(err) {
+        if (err) {
+          console.log('There was a problem setting up the remove listener:', err);
         }
       });
     },
