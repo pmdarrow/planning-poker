@@ -1,0 +1,36 @@
+.item-group {
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.item-group li:nth-child(even) {
+    background-color: #eee;
+}
+
+.container {
+    max-width: 750px;
+}
+
+.edit-form {
+    display: none;
+}
+
+.editing .edit-form {
+    display: block;
+}
+
+.editing .view {
+    display: none;
+}
+
+.actions {
+    display: none;
+}
+
+.list-group-item:hover .actions {
+    display: block;
+}
+
+.item-group .list-group-item:hover {
+    background-color: #DEE8F1;
+}
