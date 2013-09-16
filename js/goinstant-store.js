@@ -1,4 +1,4 @@
-var app = app || {};
+var GoInstantStore = GoInstantStore || {};
 
 (function ($) {
   function s4() {
@@ -10,7 +10,7 @@ var app = app || {};
            s4() + '-' + s4() + s4() + s4();
   }
 
-  app.GoInstantStore = function(url, room, callback) {
+  GoInstantStore = function(url, room, callback) {
     this.platform = new goinstant.Platform(url);
     this.platform.connect(_.bind(function(err) {
       if (err) {
@@ -25,22 +25,23 @@ var app = app || {};
           return;
         }
         console.log('Joined room:', room);
-        callback(_.bind(this.sync, this));
+        callback.call(this);
       }, this));
     }, this));
   };
 
-  _.extend(app.GoInstantStore.prototype, {
-    getKey: function(model) {
-      return this.room.key(model.collection.goInstantKey + '/' + model.id);
+  _.extend(GoInstantStore.prototype, {
+    listenForUpdates: function(object, handler) {
+      object.getKey().on('set', handler);
     },
 
     setKey: function(model, options) {
-      this.getKey(model).set(JSON.stringify(model), function(err) {
+      var key = model.getKey();
+      key.set(model.serialize(), function(err) {
         if (err) {
           return options.error('Error setting GoInstant key: ' + err);
         }
-        console.log('Successfully set key');
+        console.log('Successfully set key', key);
         return options.success(model);
       });
     },
@@ -50,8 +51,7 @@ var app = app || {};
     },
 
     findAll: function(collection, options) {
-      var key = this.room.key(collection.goInstantKey);
-      key.get(function(err, value, context) {
+      collection.getKey().get(function(err, value, context) {
         if (err) {
           return options.error('Error fetching GoInstantKey: ' + err);
         }

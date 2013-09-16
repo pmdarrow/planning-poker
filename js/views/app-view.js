@@ -19,10 +19,11 @@ var app = app || {};
       this.listenTo(app.stories, 'add', this.addOne);
 			this.listenTo(app.stories, 'reset', this.addAll);
 
-      this.goInstant = new app.GoInstantStore(this.goInstantUrl,
-        this.goInstantRoom, function(sync) {
-          Backbone.sync = sync;
+      app.GoInstantStore = new GoInstantStore(this.goInstantUrl,
+        this.goInstantRoom, function() {
+          Backbone.sync = _.bind(this.sync, this);
           app.stories.fetch({reset: true});
+          //this.listenForUpdates(app.stories, app.stories.goInstantUpdate);
         });
     },
 
@@ -63,7 +64,6 @@ var app = app || {};
 
     newAttributes: function () {
       return {
-        order: app.stories.nextOrder(),
         title: this.$title.val().trim(),
         description: this.$description.val().trim()
       };
@@ -75,6 +75,7 @@ var app = app || {};
       }
 
       app.stories.create(this.newAttributes());
+
       this.$title.val('');
       this.$description.val('');
       return false;
