@@ -1,10 +1,19 @@
-#Planning Poker
+# Planning Poker
 
-##Dependencies
+### Dependencies
 
     npm install -g bower
     bower install
 
-##Run
+### Run
 
     open index.html
+
+### Todo
+
+    * Maintain some sort of order
+    * Enable estimates to be entered
+    * Show indicator that estimate has been added
+    * Add ability to reveal estimates
+    * Show active users
+    * Add initial loading spinner
