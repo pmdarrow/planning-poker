@@ -16,7 +16,7 @@
         </header>
 
         <section id="main">
-            <div id="story-list" class="item-group"></div>
+            <ul id="story-list" class="item-group"></ul>
         </section>
 
         <section id="create-story" class="well">
@@ -49,11 +49,18 @@
 
     <script type="text/template" id="story-template">
         <div class="view">
-            <i class="pencil pull-right glyphicon glyphicon-pencil"></i>
+            <div class="actions pull-right">
+                <button type="button" class="btn btn-sm btn-default edit-btn">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-danger delete-btn">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+            </div>
             <h4 class="list-group-item-heading"><%- title %></h4>
             <p class="list-group-item-text"><%- description %></p>
         </div>
-        <form class="edit" role="form">
+        <form class="edit-form" role="form">
             <div class="form-group">
                 <label for="story-title">Title <span class="text-muted">(required)</span></label>
                 <input type="text" class="form-control" id="story-title"

@@ -2,13 +2,14 @@ var app = app || {};
 
 (function ($) {
   app.StoryView = Backbone.View.extend({
-    tagName: 'a',
+    tagName: 'li',
     className: 'list-group-item',
     template: _.template($('#story-template').html()),
     attributes: {'href': '#'},
     events: {
-      'dblclick': 'edit',
-      'submit .edit': 'update',
+      'click .edit-btn': 'edit',
+      'click .delete-btn': 'destroy',
+      'submit .edit-form': 'update',
       'click .cancel': 'cancelEdit'
     },
 
@@ -49,6 +50,10 @@ var app = app || {};
       }
 
       this.cancelEdit();
+    },
+
+    destroy: function() {
+      this.model.destroy();
     }
   });
 })(jQuery);

@@ -3,15 +3,19 @@
     margin-bottom: 20px;
 }
 
+.item-group li:nth-child(even) {
+    background-color: #eee;
+}
+
 .container {
     max-width: 750px;
 }
 
-.edit {
+.edit-form {
     display: none;
 }
 
-.editing .edit {
+.editing .edit-form {
     display: block;
 }
 
@@ -19,10 +23,14 @@
     display: none;
 }
 
-.pencil {
+.actions {
     display: none;
 }
 
-.list-group-item:hover .pencil {
+.list-group-item:hover .actions {
     display: block;
+}
+
+.item-group .list-group-item:hover {
+    background-color: #DEE8F1;
 }

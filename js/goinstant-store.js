@@ -32,7 +32,15 @@ var GoInstantStore = GoInstantStore || {};
 
   _.extend(GoInstantStore.prototype, {
     listenForUpdates: function(object, handler) {
-      object.getKey().on('set', handler);
+      var options = {
+        bubble: true,
+        listener: handler
+      };
+      object.getKey().on('set', options, function(err) {
+        if (err) {
+          console.log('There was a problem setting up the listener:', err);
+        }
+      });
     },
 
     setKey: function(model, options) {
@@ -53,7 +61,7 @@ var GoInstantStore = GoInstantStore || {};
     findAll: function(collection, options) {
       collection.getKey().get(function(err, value, context) {
         if (err) {
-          return options.error('Error fetching GoInstantKey: ' + err);
+          return options.error('Error fetching GoInstant key: ' + err);
         }
         var collection = _.map(value, function(value) {
           return JSON.parse(value);
@@ -74,8 +82,18 @@ var GoInstantStore = GoInstantStore || {};
       this.setKey(model, options);
     },
 
-    delete: function(model, options) {
-      console.log('delete not implemented');
+    destroy: function(model, options) {
+      if (model.isNew()) {
+        return options.success();
+      }
+      var key = model.getKey();
+      return key.remove(function(err) {
+        if (err) {
+          return options.error('Error removing GoInstant key: ' + err);
+        }
+        console.log('Successfully removed key', key);
+        return options.success(model);
+      });
     },
 
     sync: function(method, model, options) {

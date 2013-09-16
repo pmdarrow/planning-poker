@@ -23,7 +23,7 @@ var app = app || {};
         this.goInstantRoom, function() {
           Backbone.sync = _.bind(this.sync, this);
           app.stories.fetch({reset: true});
-          //this.listenForUpdates(app.stories, app.stories.goInstantUpdate);
+          this.listenForUpdates(app.stories, app.stories.goInstantUpdate);
         });
     },
 
