@@ -67,7 +67,7 @@ var GoInstantStore = GoInstantStore || {};
     },
 
     find: function(model, options) {
-      console.log('find not implemented');
+      console.log('Find not implemented.');
     },
 
     findAll: function(collection, options) {
