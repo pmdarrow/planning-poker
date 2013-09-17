@@ -67,7 +67,7 @@
                         <button type="button" class="btn btn-xs btn-danger delete-btn">
                             <i class="glyphicon glyphicon-remove"></i> Delete
                         </button>
-                        <% if (!story.get('revealed')) { %>
+                        <% if (!story.get('revealed') && story.get('estimates').length > 0) { %>
                             <button type="button" class="btn btn-xs btn-success reveal-btn">
                                 <i class="glyphicon glyphicon-check"></i> Reveal
                             </button>
