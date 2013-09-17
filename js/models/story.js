@@ -5,7 +5,8 @@ var app = app || {};
     defaults: {
       title: '',
       description: '',
-      estimates: [1, 2, 3]
+      estimates: [],
+      revealed: false
     },
 
     getKey: function () {
@@ -17,8 +18,20 @@ var app = app || {};
         id: this.id,
         title: this.get('title'),
         description: this.get('description'),
+        estimates: this.get('estimates'),
+        revealed: this.get('revealed'),
         createdAt: this.get('createdAt')
       });
+    },
+
+    estimateAverage: function() {
+      var estimates = this.get('estimates');
+      if (estimates.length === 0) {
+        return 0;
+      }
+      return _.reduce(estimates, function(sum, estimate) {
+        return sum + estimate
+      }, 0) / estimates.length
     }
   });
 

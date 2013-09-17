@@ -63,3 +63,7 @@
 .details, .estimate {
     position: relative;
 }
+
+.estimate {
+    font-weight: bold;
+}

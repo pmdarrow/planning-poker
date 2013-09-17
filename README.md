@@ -11,7 +11,4 @@
 
 ### Todo
 
-* Enable estimates to be entered
-* Show indicator that estimate has been added
-* Add ability to reveal estimates
 * Show active users
