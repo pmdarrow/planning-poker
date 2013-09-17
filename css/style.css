@@ -67,3 +67,7 @@
 .estimate {
     font-weight: bold;
 }
+
+.alert ul {
+    padding-left: 20px;
+}
