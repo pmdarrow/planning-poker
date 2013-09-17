@@ -25,6 +25,13 @@
 
 .actions {
     display: none;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.list-group-item {
+    padding: 0 15px;
 }
 
 .list-group-item:hover .actions {
@@ -43,4 +50,16 @@
     position: absolute;
     top: 4px;
     right: 0;
+}
+
+.details, .estimate, .edit-form {
+    padding: 10px 15px;
+}
+
+.details {
+    border-right: 1px solid #ddd;
+}
+
+.details, .estimate {
+    position: relative;
 }

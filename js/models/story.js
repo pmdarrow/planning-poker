@@ -4,7 +4,8 @@ var app = app || {};
   app.Story = Backbone.Model.extend({
     defaults: {
       title: '',
-      description: ''
+      description: '',
+      estimates: [1, 2, 3]
     },
 
     getKey: function () {
