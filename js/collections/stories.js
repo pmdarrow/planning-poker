@@ -18,14 +18,8 @@ var app = app || {};
       this.fetch({reset: true});
     },
 
-    revealed: function () {
-      return this.filter(function (story) {
-        return story.get('estimateRevealed');
-      });
-    },
-
-    remaining: function () {
-      return this.without.apply(this, this.revealed());
+    comparator: function(story) {
+      return new Date(story.get('createdAt'));
     }
   });
 

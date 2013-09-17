@@ -15,8 +15,11 @@ var app = app || {};
       return JSON.stringify({
         id: this.id,
         title: this.get('title'),
-        description: this.get('description')
+        description: this.get('description'),
+        createdAt: this.get('createdAt')
       });
     }
   });
+
+  Backbone.Timestamp(app.Story);
 })();

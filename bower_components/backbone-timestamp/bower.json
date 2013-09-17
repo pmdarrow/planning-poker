@@ -1,0 +1,21 @@
+{
+  "name": "backbone-timestamp",
+  "version": "0.1.3",
+  "description": "Backbone.Model plugin to generate timestamps attributes",
+  "author": "Aleksey Kulikov",
+  "main": "index.js",
+  "repository": "git://github.com/ask11/backbone-timestamp.git",
+  "dependencies": {
+    "jquery": "~1.10.x",
+    "backbone": "~1.0.0",
+    "underscore": "~1.5.x"
+  },
+  "devDependencies": {
+    "chai": "~1.7.x"
+  },
+  "ignore": [
+    "**/.*",
+    "test",
+    "package.json"
+  ]
+}
