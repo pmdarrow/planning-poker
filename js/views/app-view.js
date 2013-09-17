@@ -16,6 +16,9 @@ var app = app || {};
 
       this.listenTo(app.stories, 'add', this.addOne);
       this.listenTo(app.stories, 'reset', this.addAll);
+      this.listenTo(app.stories, 'request', this.startLoading);
+      this.listenTo(app.stories, 'sync', this.stopLoading);
+      this.listenTo(app.stories, 'destroy', this.stopLoading);
 
       app.GoInstantStore = new GoInstantStore(this.goInstantUrl,
         this.goInstantRoom, function() {
@@ -60,6 +63,14 @@ var app = app || {};
       this.$title.val('');
       this.$description.val('');
       return false;
+    },
+
+    startLoading: function() {
+      $('#loading').show();
+    },
+
+    stopLoading: function() {
+      $('#loading').hide();
     }
   });
 })(jQuery);

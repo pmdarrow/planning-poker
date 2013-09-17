@@ -75,10 +75,10 @@ var GoInstantStore = GoInstantStore || {};
         if (err) {
           return options.error('Error fetching GoInstant key: ' + err);
         }
-        var collection = _.map(value, function(value) {
+        var values = _.map(value, function(value) {
           return JSON.parse(value);
         });
-        return options.success(collection);
+        return options.success(values);
       });
     },
 
@@ -110,6 +110,7 @@ var GoInstantStore = GoInstantStore || {};
 
     sync: function(method, model, options) {
       console.log('Sync:', method, model, options);
+      model.trigger('request');
 
       switch (method) {
         case "read":

@@ -32,5 +32,15 @@
 }
 
 .item-group .list-group-item:hover {
-    background-color: #DEE8F1;
+    background-color: #dee8f1;
+}
+
+.page-header {
+    position: relative;
+}
+
+#loading {
+    position: absolute;
+    top: 4px;
+    right: 0;
 }
